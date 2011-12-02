@@ -1,0 +1,33 @@
+I. Project
+II. Remote Demo
+III. Running Locally
+IV. Notes
+
+=====
+II. Remote Demo
+A demo server running this project on EC2 is available at TODO:____.
+
+There are two accounts available to try:
+admin - emily/emilytest
+user - jane/janetest
+
+III. Running Locally
+1. Clone this project's code from github (http://github.com/eleather/blog).
+
+Set up your machine
+2. Install python and django (https://docs.djangoproject.com/en/dev/intro/install/).
+3. Install apache and mod_wsgi (http://code.google.com/p/modwsgi/).
+4. Replace your httpd.conf with the one at the top level of this project.  This will enable WSGI in Apache. {TODO: where is this file likely to be?}
+5. Install postgresql (http://www.postgresql.org/).
+
+Set up the project
+6. Create a postgresql user called 'emily' with the password 'emilytest'.
+7. Create a postgresql database called 'emily'.
+8. In your terminal, cd to the directory where you cloned this project, then into the 'emily' directory, and then run 'python manage.py syncdb' to load the schema into the database.
+
+Run the project
+9. Still in the top 'emily' directory in your terminal, run 'python manage.py runserver' to start a server.
+10. Visit localhost:8000 in your browser to view the site.
+
+IV. Notes
+Project names, usernames, and passwords were intentionally kept simple for your convenience.  I used my name in many of the naming schemes to help avoid overlap with things already on your machine.  The password choices and repetition are insecure, and wouldn't be used in a real development setting.
