@@ -6,6 +6,9 @@ class Post(models.Model):
     body = models.TextField()
     created_at = models.DateTimeField('published on')
     # created_by = models.ForeignKey('author', User)
+    
+    def __unicode__(self):
+        return "title: " + self.title + ", slug: " + self.slug + ", created_at: " + str(self.created_at) + ", body: " + self.body
 
 class Comment(models.Model):
     post = models.ForeignKey(Post)
