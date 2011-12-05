@@ -1,7 +1,8 @@
 I. Project
 II. Remote Demo
 III. Running Locally
-IV. Notes
+IV. Running the Tests
+V. Notes
 
 =====
 II. Remote Demo
@@ -29,5 +30,9 @@ Run the project
 9. Still in the top 'emily' directory in your terminal, run 'python manage.py runserver' to start a server.
 10. Visit localhost:8000 in your browser to view the site.
 
-IV. Notes
-Project names, usernames, and passwords were intentionally kept simple for your convenience.  I used my name in many of the naming schemes to help avoid overlap with things already on your machine.  The password choices and repetition are insecure, and wouldn't be used in a real development setting.
+IV. Running the Tests
+
+
+V. Notes
+1. Project names, usernames, and passwords were intentionally kept simple for your convenience.  I used my name in many of the naming schemes to help avoid overlap with things already on your machine.  The password choices and repetition are insecure, and wouldn't be used in a real development setting.
+2. I've used Python 2.7 and Django 1.4.  If you're using different versions, you may encounter issues (though I'm not experienced enough with Python and Django to be able to anticipate all of them).  For example, Python 2.7 uses a different testing library than previous versions, and if you're not using Python 2.7 you may need to change my 'import unittest' declarations to 'from django.utils import unittest'.
