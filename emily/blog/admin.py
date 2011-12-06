@@ -14,7 +14,15 @@ class CommentInline(admin.StackedInline):
 
 # Configure admin for the Post model.
 class PostAdmin(admin.ModelAdmin):
+    # Configuration for the list view.
     list_display = ('title', 'created_at')
+    list_filter = ['created_at']
+    # If this blog becomes large, we'll have to remove or optimize the 'body'
+    # search so as to not overload the database.
+    search_fields = ['question', 'body']
+    date_hierarchy = 'created_at'
+    
+    # Configuration for the show/edit views.
     fields = ['title', 'slug', 'created_at', 'body']
     inlines = [CommentInline]
 
