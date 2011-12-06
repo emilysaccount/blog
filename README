@@ -31,7 +31,7 @@ Run the project
 10. Visit localhost:8000 in your browser to view the site.
 
 IV. Running the Tests
-
+1. {TODO: granting permissions on test database, user emily must have permission createdb}
 
 V. Notes
 1. Project names, usernames, and passwords were intentionally kept simple for your convenience.  I used my name in many of the naming schemes to help avoid overlap with things already on your machine.  The password choices and repetition are insecure, and wouldn't be used in a real development setting.
