@@ -8,7 +8,7 @@ class Post(models.Model):
     # created_by = models.ForeignKey('author', User)
     
     def __unicode__(self):
-        return "title: " + self.title + ", slug: " + self.slug + ", created_at: " + str(self.created_at) + ", body: " + self.body
+        return self.title
 
 class Comment(models.Model):
     post = models.ForeignKey(Post)
@@ -19,5 +19,5 @@ class Comment(models.Model):
     created_at = models.DateTimeField('posted at')
     
     def __unicode__(self):
-        return "post_id: " + self.post.id + ", title: " + self.title + ", created_at: " + str(self.created_at) + ", body: " + self.body
+        return self.title
         
