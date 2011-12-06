@@ -1,1 +1,15 @@
-{{ post }}
+<h1>{{ post.title }}</h1>
+<div class='byline'>by <span class='author'>unknown</span> on <span class='publication-date'>{{ post.created_at }}</span></div>
+<div class='post-body'>
+  {{ post.body }}
+</div>
+
+<ul>
+{% for comment in post.comment_set.all %}
+    <div>
+      <div class='comment-title'>{{ comment.title }}</div>
+      <div class='byline'>by <span class='author'>unknown</span> on <span class='publication-date'>{{ comment.created_at }}</span></div>
+      <div class='comment-body'>{{ comment.body }}</div>
+    </div>
+{% endfor %}
+</ul>
