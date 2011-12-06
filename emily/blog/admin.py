@@ -19,7 +19,7 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ['created_at']
     # If this blog becomes large, we'll have to remove or optimize the 'body'
     # search so as to not overload the database.
-    search_fields = ['question', 'body']
+    search_fields = ['title', 'body']
     date_hierarchy = 'created_at'
     
     # Configuration for the show/edit views.
@@ -28,6 +28,13 @@ class PostAdmin(admin.ModelAdmin):
 
 # Specify the order of fields for the Comment model.
 class CommentAdmin(admin.ModelAdmin):
+    # Configuration for the list view.
+    list_display = ('post', 'title', 'created_at')
+    list_filter = ['created_at']
+    search_fields = ['title']
+    date_hierarchy = 'created_at'
+  
+    # Configuration for the show/edit views.
     fields = ['post', 'title', 'created_at', 'body']
 
 
