@@ -12,12 +12,13 @@ class CommentInline(admin.StackedInline):
     # We only want one comment form to be visible at a time.
     extra = 1
 
-# Specify the order of fields for the Post model.
+# Configure admin for the Post model.
 class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at')
     fields = ['title', 'slug', 'created_at', 'body']
     inlines = [CommentInline]
 
-# Specify the order ofr fields for the Comment model.
+# Specify the order of fields for the Comment model.
 class CommentAdmin(admin.ModelAdmin):
     fields = ['post', 'title', 'created_at', 'body']
 
