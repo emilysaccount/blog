@@ -1,5 +1,8 @@
 <h1>{{ post.title }}</h1>
+
 <div class='byline'>by <span class='author'>unknown</span> on <span class='publication-date'>{{ post.created_at }}</span></div>
+<div class='edit-link'><a href='/blog/post/{{ post.id }}/edit'>Edit</a></div>
+
 <div class='post-body'>
   {{ post.body }}
 </div>

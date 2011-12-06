@@ -32,16 +32,24 @@ def post_edit(request, post_id):
 
 # /post/1/update
 def post_update(request, post_id):
+    # Get the appropriate Post.
     post = Post.objects.get(pk=post_id)
+    
+    # If this is a POST request, process the form.
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            # TODO: Process the data in form.cleaned_data
-        
+            # Process the data in form.cleaned_data.
+            post.title = form.cleaned_data['title']
+            post.slug = form.cleaned_data['slug']
+            post.created_at = form.cleaned_data['created_at']
+            post.body = form.cleaned_data['body']
+            post.save()
+                
             return HttpResponseRedirect(reverse('blog.views.post_show_by_slug', args=(post.slug,)))
-        else:
-            form = PostForm()
-
-        return render_to_response('posts/edit.html', {'post': post, 
-                                                      'form': form})
+    # If the user somehow got to this page without using a POST request (which
+    # shouldn't be happening with this URL design), send them back to the edit
+    # page.
+    else:
+        return HttpResponseRedirect(reverse('blog.views.post_edit', args=(post.id,)))
     
