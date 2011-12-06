@@ -7,6 +7,7 @@ urlpatterns = patterns('blog.views',
     url(r'^posts/$', 'post_index'),
     url(r'^post/(?P<post_id>\d+)/$', 'post_show'),
     url(r'^post/(?P<post_id>\d+)/edit/$', 'post_edit'),
+    url(r'^post/(?P<post_id>\d+)/update/$', 'post_update'),
     
     # URLs as specified by the project instructions.
     url(r'^(?P<slug>[^/]+)/$', 'post_show_by_slug'),
