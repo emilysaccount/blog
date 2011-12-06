@@ -1,11 +1,31 @@
 from blog.forms import PostForm
 from blog.models import Post
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
+
+def post_index(request):
+    # Get all Posts that have been written.
+    post_list = Post.objects.all()
+    
+    # Setup a Paginator instance that will show 25 Posts at a time.
+    paginator = Paginator(post_list, 25)
+
+    page = request.GET.get('page')
+    try:
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        contacts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        contacts = paginator.page(paginator.num_pages)
+
+    return render_to_response('posts/index.html', {'post_list': post_list})
     
 # /post/1/edit
 def post_edit(request, post_id):
@@ -30,10 +50,12 @@ def post_update(request, post_id):
             post.body = form.cleaned_data['body']
             post.save()
                 
-            return HttpResponseRedirect(reverse('post_show_by_slug', args=(post.slug,)))
+            return HttpResponseRedirect(reverse('post_show_by_slug', 
+                                                args=(post.slug,)))
     # If the user somehow got to this page without using a POST request (which
     # shouldn't be happening with this URL design), send them back to the edit
     # page.
     else:
-        return HttpResponseRedirect(reverse('blog.views.post_edit', args=(post.id,)))
+        return HttpResponseRedirect(reverse('blog.views.post_edit', 
+                                            args=(post.id,)))
     

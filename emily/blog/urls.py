@@ -4,10 +4,7 @@ from django.views.generic import DetailView, ListView
 
 urlpatterns = patterns('',
     # Restful URLs.
-    url(r'^(?:posts/)*$',
-        ListView.as_view(
-            queryset=Post.objects.order_by('-created_at'),
-            template_name='posts/index.html')),
+    url(r'^(?:posts/)*$', 'blog.views.post_index'),
             
     url(r'^post/(?P<pk>\d+)/$',
         DetailView.as_view(
