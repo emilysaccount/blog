@@ -7,7 +7,6 @@ urlpatterns = patterns('',
     url(r'^(?:posts/)*$',
         ListView.as_view(
             queryset=Post.objects.order_by('-created_at'),
-            context_object_name='recent_posts',
             template_name='posts/index.html')),
             
     url(r'^post/(?P<pk>\d+)/$',
