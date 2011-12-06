@@ -6,22 +6,6 @@ from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
-
-# /posts
-def post_index(request):
-    recent_posts = Post.objects.all().order_by('-created_at')[:5]
-    return render_to_response('posts/index.html', 
-                              {'recent_posts': recent_posts})
-    
-# /post/1   
-def post_show(request, post_id):
-    post = get_object_or_404(Post, pk=post_id)
-    return render_to_response('posts/show.html', {'post': post})
-    
-# /slug-1
-def post_show_by_slug(request, slug):
-    post = get_object_or_404(Post, slug=slug)
-    return render_to_response('posts/show.html', {'post': post})
     
 # /post/1/edit
 def post_edit(request, post_id):
@@ -46,7 +30,7 @@ def post_update(request, post_id):
             post.body = form.cleaned_data['body']
             post.save()
                 
-            return HttpResponseRedirect(reverse('blog.views.post_show_by_slug', args=(post.slug,)))
+            return HttpResponseRedirect(reverse('post_show_by_slug', args=(post.slug,)))
     # If the user somehow got to this page without using a POST request (which
     # shouldn't be happening with this URL design), send them back to the edit
     # page.

@@ -1,14 +1,28 @@
 from blog.models import Post
 from django.conf.urls import patterns, url
+from django.views.generic import DetailView, ListView
 
-urlpatterns = patterns('blog.views',
+urlpatterns = patterns('',
     # Restful URLs.
-    url(r'^$', 'post_index'),
-    url(r'^posts/$', 'post_index'),
-    url(r'^post/(?P<post_id>\d+)/$', 'post_show'),
-    url(r'^post/(?P<post_id>\d+)/edit/$', 'post_edit'),
-    url(r'^post/(?P<post_id>\d+)/update/$', 'post_update'),
+    url(r'^(?:posts/)*$',
+        ListView.as_view(
+            queryset=Post.objects.order_by('-created_at'),
+            context_object_name='recent_posts',
+            template_name='posts/index.html')),
+            
+    url(r'^post/(?P<pk>\d+)/$',
+        DetailView.as_view(
+            model=Post,
+            template_name='posts/show.html')),
+            
+    url(r'^post/(?P<post_id>\d+)/edit/$', 'blog.views.post_edit'),            
+    url(r'^post/(?P<post_id>\d+)/update/$', 'blog.views.post_update'),
+    
     
     # URLs as specified by the project instructions.
-    url(r'^(?P<slug>[^/]+)/$', 'post_show_by_slug'),
+    url(r'^(?P<slug>[^/]+)/$', 
+        DetailView.as_view(
+            model=Post,
+            template_name='posts/show.html'),
+        name='post_show_by_slug'),
 )
