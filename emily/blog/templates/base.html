@@ -1,5 +1,10 @@
 <div id='page-header'>
-    <a href="/accounts/logout">Sign out</a>
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}. | <a href="/accounts/logout">Sign out</a></p>
+{% else %}
+    <p><a href="/accounts/login">Sign in</a></p>
+{% endif %}
+    
 </div>
 
 <div id='page-content'>

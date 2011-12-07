@@ -33,7 +33,8 @@ def post_index(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         post_list = paginator.page(paginator.num_pages)
 
-    return render_to_response('posts/index.html', {'post_list': post_list})
+    return render_to_response('posts/index.html', {'post_list': post_list},
+                              context_instance=RequestContext(request))
     
 # /post/create
 @login_required
