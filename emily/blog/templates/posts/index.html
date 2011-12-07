@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<a href='/posts/new'>New Post</a>
+<a href='{% url 'new_post' %}'>New Post</a>
 
 {% if post_list %}
     <div class="pagination">

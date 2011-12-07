@@ -6,22 +6,7 @@ from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
-from django.views.generic.create_update import create_object
-from django.views.generic.list_detail import object_list
 
-
-# /posts
-def post_index(request):
-    return object_list(request, queryset=Post.objects.all(),
-                       template_object_name='post',
-                       template_name='posts/index.html',
-                       paginate_by=5)
-    
-# /post/create
-@login_required
-def post_create(request):
-    return create_object(request, form_class=PostForm, 
-                         template_name='posts/new.html', login_required=True)
     
 # /post/1/edit
 @login_required
