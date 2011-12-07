@@ -13,6 +13,8 @@ urlpatterns = patterns('',
             context_object_name='form',
             template_name='posts/new.html'),
         name='post_new'),
+        
+    url(r'^posts/create/$', 'blog.views.post_create'),
             
     url(r'^post/(?P<pk>\d+)/$',
         DetailView.as_view(

@@ -8,6 +8,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
 
+# /posts
 def post_index(request):
     # Get all Posts that have been written.
     post_list = Post.objects.all()
@@ -26,6 +27,27 @@ def post_index(request):
         post_list = paginator.page(paginator.num_pages)
 
     return render_to_response('posts/index.html', {'post_list': post_list})
+    
+# /post/create
+def post_create(request):
+    # If this is a POST request, process the form.
+    if request.method == 'POST': 
+        form = PostForm(request.POST)
+        if form.is_valid():
+            # Create a new Post object from the data in the form.
+            post = Post(form.cleaned_data)
+            post.save()
+            return HttpResponseRedirect(reverse('post_show_by_slug',
+                                                args=(post.slug)))
+                                                
+        else: 
+            return render_to_response('posts/new.html', {'form': form},
+                                      context_instance=RequestContext(request))
+        
+    # If the user got to this page without a POST request, redirect them to
+    # the index page.
+    else:
+        return HttpResponseRedirect(reverse('blog.views.post_index'))
     
 # /post/1/edit
 def post_edit(request, post_id):
@@ -51,11 +73,11 @@ def post_update(request, post_id):
             post.save()
                 
             return HttpResponseRedirect(reverse('post_show_by_slug', 
-                                                args=(post.slug,)))
+                                                args=(post.slug)))
     # If the user somehow got to this page without using a POST request (which
     # shouldn't be happening with this URL design), send them back to the edit
     # page.
     else:
         return HttpResponseRedirect(reverse('blog.views.post_edit', 
-                                            args=(post.id,)))
+                                            args=(post.id)))
     

@@ -2,7 +2,7 @@
 
 {% if error_message %}<p class='notify-error'>{{ error_message }}</p>{% endif %}
 
-<form action='/blog/post/{{ post.id }}/create/' method='post'>
+<form action='/blog/posts/create/' method='post'>
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Create" />
