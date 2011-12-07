@@ -5,7 +5,7 @@
     |
     
     {% if user.is_authenticated %}
-        <span>Welcome, {{ user.username }}.</span>
+        <span>Welcome, {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}.</span>
         | 
         <span class='session-management-link'><a href="/accounts/logout">Sign out</a></span>
     {% else %}
