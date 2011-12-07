@@ -1,12 +1,19 @@
 from blog.forms import PostForm
 from blog.models import Post
 
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
+
+# /logout
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('blog.views.post_index'))
 
 # /posts
 def post_index(request):
@@ -29,6 +36,7 @@ def post_index(request):
     return render_to_response('posts/index.html', {'post_list': post_list})
     
 # /post/create
+@login_required
 def post_create(request):
     # If this is a POST request, process the form.
     if request.method == 'POST': 
@@ -49,6 +57,7 @@ def post_create(request):
         return HttpResponseRedirect(reverse('blog.views.post_index'))
     
 # /post/1/edit
+@login_required
 def post_edit(request, post_id):
     post = Post.objects.get(pk=post_id)
     form = PostForm(instance=post)
@@ -56,6 +65,7 @@ def post_edit(request, post_id):
                               context_instance=RequestContext(request))
 
 # /post/1/update
+@login_required
 def post_update(request, post_id):
     # Get the appropriate Post.
     post = Post.objects.get(pk=post_id)

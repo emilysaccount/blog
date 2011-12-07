@@ -1,3 +1,8 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+
 <a href='/posts/new'>New Post</a>
 
 {% if post_list %}
@@ -24,3 +29,5 @@
 {% else %}
     <p>No posts are available.</p>
 {% endif %}
+
+{% endblock %}

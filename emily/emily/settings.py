@@ -153,3 +153,7 @@ LOGGING = {
         },
     }
 }
+
+# Authentication configurations
+LOGIN_REDIRECT_URL = '/'
+

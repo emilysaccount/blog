@@ -3,6 +3,7 @@ from blog.models import Post
 from django.conf.urls import patterns, url
 from django.views.generic import DetailView, ListView
 
+# Post URLs.
 urlpatterns = patterns('',
     # (Mostly) Restful URLs.
     url(r'^(?:posts/)*$', 'blog.views.post_index'),
