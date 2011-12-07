@@ -1,10 +1,18 @@
+from blog.forms import PostForm
 from blog.models import Post
 from django.conf.urls import patterns, url
 from django.views.generic import DetailView, ListView
 
 urlpatterns = patterns('',
-    # Restful URLs.
+    # (Mostly) Restful URLs.
     url(r'^(?:posts/)*$', 'blog.views.post_index'),
+    
+    url(r'^posts/new*$', 
+        ListView.as_view(
+            queryset=PostForm(),
+            context_object_name='form',
+            template_name='posts/new.html'),
+        name='post_new'),
             
     url(r'^post/(?P<pk>\d+)/$',
         DetailView.as_view(
