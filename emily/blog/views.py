@@ -36,7 +36,8 @@ def post_index(request):
 
     return list_detail.object_list(request, queryset=Post.objects.all(),
                                    template_object_name='post',
-                                   template_name='posts/index.html')
+                                   template_name='posts/index.html',
+                                   paginate_by=5)
     
 # /post/create
 @login_required
