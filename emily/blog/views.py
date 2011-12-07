@@ -35,8 +35,7 @@ def post_create(request):
         form = PostForm(request.POST)
         if form.is_valid():
             # Create a new Post object from the data in the form.
-            post = Post(form.cleaned_data)
-            post.save()
+            post = form.save()
             return HttpResponseRedirect(reverse('post_show_by_slug',
                                                 args=(post.slug)))
                                                 
