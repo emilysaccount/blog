@@ -1,4 +1,3 @@
-from blog.forms import PostForm
 from blog.models import Post
 from django.conf.urls import patterns, url
 from django.views.generic import DetailView, ListView
