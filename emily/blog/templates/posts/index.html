@@ -3,7 +3,9 @@
 
 {% block content %}
 
-<a href='{% url 'new_post' %}'>New Post</a>
+{% if user.is_staff %}
+  <a href='{% url 'new_post' %}'>New Post</a>
+{% endif %}
 
 {% if post_list %}
     <div class="pagination">
