@@ -1,7 +1,6 @@
 from blog.forms import PostForm
 from blog.models import Post
 
-from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
@@ -11,11 +10,6 @@ from django.template import RequestContext
 from django.views.generic.create_update import create_object
 from django.views.generic.list_detail import object_list
 
-
-# /logout
-def user_logout(request):
-    logout(request)
-    return HttpResponseRedirect(reverse('blog.views.post_index'))
 
 # /posts
 def post_index(request):
