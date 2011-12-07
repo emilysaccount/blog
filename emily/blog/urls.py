@@ -2,7 +2,7 @@ from blog.forms import PostForm
 from blog.models import Post
 from django.conf.urls import patterns, url
 from django.views.generic import DetailView, ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 # Post URLs.
 urlpatterns = patterns('',
@@ -20,12 +20,13 @@ urlpatterns = patterns('',
         DetailView.as_view(model=Post, template_name='posts/show.html'),
         name='post'),
             
-    url(r'^post/(?P<post_id>\d+)/edit/$', 'blog.views.post_edit'),            
-    url(r'^post/(?P<post_id>\d+)/update/$', 'blog.views.post_update'),
+    url(r'^post/(?P<pk>\d+)/edit/$', 
+        UpdateView.as_view(model=Post, template_name='posts/edit.html'),
+        name='edit_post'),            
     
     
     # URLs as specified by the project instructions.
     url(r'^(?P<slug>[^/]+)/$', 
         DetailView.as_view(model=Post, template_name='posts/show.html'),
-        name='post_show_by_slug'),
+        name='post_by_slug'),
 )

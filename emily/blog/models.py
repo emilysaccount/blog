@@ -12,7 +12,7 @@ class Post(models.Model):
     
     @models.permalink
     def get_absolute_url(self):
-        return ('post', [str(self.id)])
+        return ('post_by_slug', [str(self.slug)])
 
 class Comment(models.Model):
     post = models.ForeignKey(Post)
