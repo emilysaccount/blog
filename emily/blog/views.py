@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
+from django.views.generic import list_detail
 
 
 # /logout
@@ -17,24 +18,25 @@ def user_logout(request):
 
 # /posts
 def post_index(request):
-    # Get all Posts that have been written.
-    post_list = Post.objects.all()
-    
-    # Setup a Paginator instance that will show 25 Posts at a time.
-    paginator = Paginator(post_list, 25)
+    # # Get all Posts that have been written.
+    # post_list = Post.objects.all()
+    # 
+    # # Setup a Paginator instance that will show 25 Posts at a time.
+    # paginator = Paginator(post_list, 25)
+    # 
+    # page = request.GET.get('page')
+    # try:
+    #     post_list = paginator.page(page)
+    # except PageNotAnInteger:
+    #     # If page is not an integer, deliver first page.
+    #     post_list = paginator.page(1)
+    # except EmptyPage:
+    #     # If page is out of range (e.g. 9999), deliver last page of results.
+    #     post_list = paginator.page(paginator.num_pages)
 
-    page = request.GET.get('page')
-    try:
-        post_list = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        post_list = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        post_list = paginator.page(paginator.num_pages)
-
-    return render_to_response('posts/index.html', {'post_list': post_list},
-                              context_instance=RequestContext(request))
+    return list_detail.object_list(request, queryset=Post.objects.all(),
+                                   template_object_name='post',
+                                   template_name='posts/index.html')
     
 # /post/create
 @login_required
