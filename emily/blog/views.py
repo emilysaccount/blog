@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
-from django.views.generic import list_detail
+from django.views.generic.list_detail import object_list
 
 
 # /logout
@@ -18,10 +18,10 @@ def user_logout(request):
 
 # /posts
 def post_index(request):
-    return list_detail.object_list(request, queryset=Post.objects.all(),
-                                   template_object_name='post',
-                                   template_name='posts/index.html',
-                                   paginate_by=5)
+    return object_list(request, queryset=Post.objects.all(),
+                       template_object_name='post',
+                       template_name='posts/index.html',
+                       paginate_by=5)
     
 # /post/create
 @login_required
