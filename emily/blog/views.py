@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
+from django.views.generic.create_update import create_object
 from django.views.generic.list_detail import object_list
 
 
@@ -26,23 +27,8 @@ def post_index(request):
 # /post/create
 @login_required
 def post_create(request):
-    # If this is a POST request, process the form.
-    if request.method == 'POST': 
-        form = PostForm(request.POST)
-        if form.is_valid():
-            # Create a new Post object from the data in the form.
-            post = form.save()
-            return HttpResponseRedirect(reverse('post_show_by_slug',
-                                                args=(post.slug)))
-                                                
-        else: 
-            return render_to_response('posts/new.html', {'form': form},
-                                      context_instance=RequestContext(request))
-        
-    # If the user got to this page without a POST request, redirect them to
-    # the index page.
-    else:
-        return HttpResponseRedirect(reverse('blog.views.post_index'))
+    return create_object(form_class=PostForm, template_name='posts/new.html',
+                         login_required=True)
     
 # /post/1/edit
 @login_required
