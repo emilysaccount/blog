@@ -1,6 +1,6 @@
 from blog.models import Post
 from django.conf.urls import patterns, url
-from django.contrib.auth.decorators import permission_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
 
@@ -13,7 +13,7 @@ urlpatterns = patterns('',
         name='posts'),
         
     url(r'^posts/new/$', 
-        permission_required('blog.add_post')(CreateView.as_view(
+        staff_member_required(CreateView.as_view(
                 model=Post, 
                 template_name='posts/new.html')),
         name='new_post'),
@@ -23,7 +23,7 @@ urlpatterns = patterns('',
         name='post'),
             
     url(r'^post/(?P<pk>\d+)/edit/$', 
-        permission_required('blog.change_post')(UpdateView.as_view(
+        staff_member_required(UpdateView.as_view(
                 model=Post, 
                 template_name='posts/edit.html')),
         name='edit_post'),            
