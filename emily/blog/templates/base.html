@@ -1,10 +1,16 @@
+{% load url from future %}
+
 <div id='page-header'>
-{% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}. | <a href="/accounts/logout">Sign out</a></p>
-{% else %}
-    <p><a href="/accounts/login">Sign in</a></p>
-{% endif %}
+    <span id='home-link'><a href='{% url 'posts' %}'>Home</a></span>
+    |
     
+    {% if user.is_authenticated %}
+        <span>Welcome, {{ user.username }}.</span>
+        | 
+        <span class='session-management-link'><a href="/accounts/logout">Sign out</a></span>
+    {% else %}
+        <span class='session-management-link'><a href="/accounts/login">Sign in</a></span>
+    {% endif %}
 </div>
 
 <div id='page-content'>
