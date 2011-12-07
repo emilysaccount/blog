@@ -20,8 +20,8 @@ def post_index(request):
 # /post/create
 @login_required
 def post_create(request):
-    return create_object(form_class=PostForm, template_name='posts/new.html',
-                         login_required=True)
+    return create_object(request, form_class=PostForm, 
+                         template_name='posts/new.html', login_required=True)
     
 # /post/1/edit
 @login_required

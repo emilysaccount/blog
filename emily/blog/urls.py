@@ -20,7 +20,8 @@ urlpatterns = patterns('',
     url(r'^post/(?P<pk>\d+)/$',
         DetailView.as_view(
             model=Post,
-            template_name='posts/show.html')),
+            template_name='posts/show.html'),
+        name='post'),
             
     url(r'^post/(?P<post_id>\d+)/edit/$', 'blog.views.post_edit'),            
     url(r'^post/(?P<post_id>\d+)/update/$', 'blog.views.post_update'),
