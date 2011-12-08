@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView
 
 from blog.models import Comment, Post
 
+
 class CreateCommentView(CreateView):
     model = Comment
     template_name = 'comments/new.html'

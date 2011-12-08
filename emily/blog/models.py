@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
@@ -13,6 +14,7 @@ class Post(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('post_by_slug', [str(self.slug)])
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post)
