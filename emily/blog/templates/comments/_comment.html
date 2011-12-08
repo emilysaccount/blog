@@ -1,10 +1,9 @@
 {% load url from future %}
 
 <div class='comment-header'>
-    <div class='comment-title'>{{ comment.title }}</div>
     <div class='comment-metadata'>
-        <div class='byline'>by <span class='author'>unknown</span> on <span class='publication-date'>{{ comment.created_at }}</span></div>
+        <div class='byline'>by <a class='author' href='{{ comment.user_url }}'>{{ comment.user_name }}</a> on <span class='publication-date'>{{ comment.submit_date }}</span></div>
     </div>
 </div>
 
-<div class='comment-body'>{{ comment.body }}</div>
+<div class='comment-body'>{{ comment.comment }}</div>

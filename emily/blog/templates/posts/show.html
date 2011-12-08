@@ -3,10 +3,10 @@
 {% load comments %}
 {% load url from future %}
 
-{% get_comment_count for post as comment_count %}
-{% get_comment_list for post as comment_list %}
-
 {% block content %}
+
+    {% get_comment_count for post as comment_count %}
+    {% get_comment_list for post as comment_list %}
 
     <div id='post-header'>
         <h1 id='post-title'>{{ post.title }}</h1>
@@ -28,12 +28,16 @@
         <div id='new-comment-link'><a href='#'>Add Comment</a></div>
         
         <div id='new-comment-form'>
-          {% render_comment_form for post %}
+            {% with post.get_absolute_url as next %}
+                {% render_comment_form for post %}
+            {% endwith %}
         </div>
   
         <ul>
             {% for comment in comment_list %}
-                {% include 'comments/_comment.html' with comment=comment %}
+                <li>
+                    {% include 'comments/_comment.html' with comment=comment %}
+                </li>
             {% empty %}
                 <li>
                     <p>No comments yet.</p>

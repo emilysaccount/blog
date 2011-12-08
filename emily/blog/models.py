@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -6,7 +7,7 @@ class Post(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     body = models.TextField()
     created_at = models.DateTimeField('published on')
-    # created_by = models.ForeignKey('author', User)
+    user = models.ForeignKey(User)
     
     def __unicode__(self):
         return self.title
