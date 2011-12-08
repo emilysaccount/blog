@@ -25,7 +25,7 @@
 
     <div id='comments'>
         <div id='comments-header'>Comments <span id='comment-count'>({{ comment_count }})</span></div>
-        <div id='new-comment-link'><a href='{% url 'new_comment_for_post' post.id %}'>Add Comment</a></div>
+        <div id='new-comment-link'><a href='#'>Add Comment</a></div>
         
         <div id='new-comment-form'>
           {% render_comment_form for post %}

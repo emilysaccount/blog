@@ -4,8 +4,7 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
 
 from blog.feeds import RecentPostsFeed, AllPostsFeed, PostCommentsFeed
-from blog.models import Comment, Post
-from blog.views import CreateCommentView
+from blog.models import Post
 
 
 # Post URLs.
