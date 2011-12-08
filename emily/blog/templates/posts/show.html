@@ -24,7 +24,9 @@
         </div>
 
         <div id='post-body'>
-            {{ post.body }}
+            {% autoescape on %}
+                {{ post.body|linebreaks }}
+            {% endautoescape %}
         </div>
 
         <div id='comments'>

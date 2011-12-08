@@ -7,4 +7,8 @@
         </div>
     </div>
 
-    <div class='comment-body'>{{ comment.comment }}</div>
+    <div class='comment-body'>
+        {% autoescape on %}
+            {{ comment.comment|linebreaks }}
+        {% endautoescape %}
+    </div>
