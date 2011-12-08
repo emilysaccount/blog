@@ -1,10 +1,10 @@
-from blog.models import Comment, Post
-from blog.views import CreateCommentView
-
 from django.conf.urls import patterns, url
 from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
+
+from blog.models import Comment, Post
+from blog.views import CreateCommentView
 
 
 # Post URLs.

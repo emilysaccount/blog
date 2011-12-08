@@ -1,6 +1,7 @@
+from django.contrib import admin
+
 from blog.models import Post
 from blog.models import Comment
-from django.contrib import admin
 
 ##
 # Classes to specify admin configuration.

@@ -1,7 +1,8 @@
-from blog.models import Comment, Post
+from datetime import datetime
 
 from django.views.generic.edit import CreateView
-from datetime import datetime
+
+from blog.models import Comment, Post
 
 class CreateCommentView(CreateView):
     model = Comment
