@@ -3,26 +3,28 @@
 
 {% block content %}
 
-    <div id='welcome-message'>
-        <h1>Welcome!</h1>
+    <div id='index-template' class='post-templates'>
+        <div id='welcome-message'>
+            <h1>Welcome!</h1>
     
-        <p>This blog is where we keep all of our great content.  Return often for wonderful new ideas - or use the link on the right to add us to your favorite RSS reader!</p>
-    </div>
+            <p>This blog is where we keep all of our great content.  Return often for wonderful new ideas - or use the link on the right to add us to your favorite RSS reader!</p>
+        </div>
 
-    <div id='post-list'>
-        {% if post_list %}
-            {% include 'pagination_nav.html' %}
+        <div id='post-list'>
+            {% if post_list %}
+                {% include 'pagination_nav.html' %}
         
-            <ul> 
-                {% for post in post_list %}
-                    <li><a href='{{ post.get_absolute_url}}'>{{ post.title }}</a></li>
-                {% endfor %}
-            </ul>
+                <ul> 
+                    {% for post in post_list %}
+                        <li><a href='{{ post.get_absolute_url}}'>{{ post.title }}</a></li>
+                    {% endfor %}
+                </ul>
         
-            {% include 'pagination_nav.html' %}
-        {% else %}
-            <p>No posts are available.</p>
-        {% endif %}
+                {% include 'pagination_nav.html' %}
+            {% else %}
+                <p>No posts are available.</p>
+            {% endif %}
+        </div>
     </div>
 
 {% endblock %}
