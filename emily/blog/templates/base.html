@@ -12,17 +12,22 @@
 
     <body>
         <div id='page'>
-            <div id='page-header'>
-                <span id='home-link'><a href='{% url 'posts' %}'>Home</a></span>
-                |
-    
-                {% if user.is_authenticated %}
-                    <span id='user-welcome'>Welcome, {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}.</span>
-                    | 
-                    <span class='session-management-link'><a href='{% url 'logout' %}'>Sign out</a></span>
-                {% else %}
-                    <span class='session-management-link'><a href='{% url 'login' %}'>Sign in</a></span>
-                {% endif %}
+            <div id='page-header' class='clearfix'>
+                <span id='home-link' class='button'><a href='{% url 'posts' %}'>Blog++</a></span>
+                
+                <div id='user-management'>
+                    {% if user.is_authenticated %}
+                        <span id='user-welcome'>Welcome, {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}.</span>
+                        
+                        {% if user.is_staff %}
+                            <span id='new-post-link' class='button bright'><a href='{% url 'new_post' %}'>New Post</a></span>
+                        {% endif %}
+                        
+                        <span id='session-management-link' class='button bright'><a href='{% url 'logout' %}'>Sign out</a></span>
+                    {% else %}
+                        <span id='session-management-link' class='button bright'><a href='{% url 'login' %}'>Sign in</a></span>
+                    {% endif %}
+                </div>
             </div>
 
             <div id='page-content'>

@@ -1,14 +1,22 @@
 /**
- * Global styles.
+ * Global element styles.
  */
  
 body {
     margin: 0px;
     background: lightgrey;
+    font-family: 'Helvetica Neue';
 }
  
 h1 {
     font-weight: bold;
+}
+
+form {
+    width: 50%;
+    margin: 0 auto;
+    border: 1px solid lightblue;
+    padding: 4px;
 }
  
 form label {
@@ -30,7 +38,55 @@ form textarea {
 }
 
 form input[type='submit'] {
-/*    @include button-light*/
+    border: solid 1px orange;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 4px;
+    background: orange url('{{ STATIC_URL }}images/textures/gradient.png') repeat-x;
+    color: white;
+}
+
+
+/**
+ * Global class styles.
+ */
+ 
+ 
+.clearfix:after {
+    visibility: hidden;
+    clear: both;
+    display: block;
+    height: 0;
+    content: '&nbsp;';
+}
+
+.button {
+    border: solid 1px lightblue;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 4px;
+    background: lightblue url('{{ STATIC_URL }}images/textures/gradient.png') repeat-x;
+    color: white;
+}
+
+.button a {
+    color: white;
+    text-decoration: none;
+}
+
+.bright {
+    background: orange;
+    border: orange;
+}
+
+.pagination-nav {
+    text-align: center;
+}
+
+.pagination-control {
+    margin: 0 1em;
 }
 
  
@@ -42,10 +98,34 @@ form input[type='submit'] {
     width: 1000px;
     height: 100%;
     margin: 0 auto;
-    padding: 10px;
+    padding: 10px 20px;
     background: white;
 }
+
+#home-link {
+    float: left;
+    padding: 8px;
+    font-size: 2em;
+    font-family: 'Times New Roman';
+}
+
+#user-management {
+    float: right;
+}
+
+#page-content {
+    padding-top: 10px;
+}
+
  
 /**
  * Individual page styles.
  */
+ 
+.registration-templates#login-template #login-form {
+    text-align: center;
+}
+
+.registration-templates#login-template #login-form table {
+    margin: 0 auto;
+}
