@@ -1,6 +1,12 @@
 <div class='pagination-nav'>
     <span class='step-links'>
-        <a class='pagination-control' href='?page=1'>first</a>
+        <span class='pagination-control'>
+            {% if paginatior.num_pages > 1 and page_obj.number != 1 %}
+                <a class='pagination-control' href='?page=1'>first</a>
+            {% else %}
+                first
+            {% endif %}
+        </span>
     
         <span class='pagination-control'>
             {% if page_obj.has_previous %}
@@ -22,6 +28,12 @@
             {% endif %}
         </span>
     
-        <a class='pagination-control' href='?page=last'>last</a>
+        <span class='pagination-control'>
+            {% if paginatior.num_pages > 1 and page_obj.number == paginator.num_pages %}
+                <a class='pagination-control' href='?page=last'>last</a>
+            {% else %}
+                last
+            {% endif %}
+        </span>
     </span>
 </div>
