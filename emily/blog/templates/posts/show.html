@@ -23,7 +23,7 @@
   
   <ul>
   {% for comment in post.comment_set.all %}
-      <div>
+      <li>
         <div class='comment-header'>
           <div class='comment-title'>{{ comment.title }}</div>
           <div class='comment-metadata'>
@@ -32,7 +32,12 @@
           </div>
         </div>
         <div class='comment-body'>{{ comment.body }}</div>
-      </div>
+      </li>
+  {% empty %}
+      <li>
+        <p>No comments yet.</p>
+        <p>Use the 'Add Comment' link above to be the first to comment on this post!</p>
+      </li>
   {% endfor %}
   </ul>
 </div>
