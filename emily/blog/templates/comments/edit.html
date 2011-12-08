@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<h1><a href='{% url 'post_by_slug' comment.post.slug %}'>{{ comment.post.title }}</a> > Edit Comment</h1>
+<h1><a href='{{ comment.post.get_absolute_url }}'>{{ comment.post.title }}</a> > Edit Comment</h1>
 
 {% if error_message %}<p class='notify-error'>{{ error_message }}</p>{% endif %}
 

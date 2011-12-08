@@ -31,5 +31,7 @@ class Comment(models.Model):
         # not for this individual comment.  Comments don't have their own show
         # pages - we're not that fancy.  You read comments on the pages of 
         # their posts.
+        # TODO: Figure out if there's a way to use self.post.get_absolute_url
+        # here.  I haven't found a way that doesn't result in an error.
         return ('post', [str(self.post.id)])
         
