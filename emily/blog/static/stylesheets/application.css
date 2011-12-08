@@ -8,6 +8,14 @@ body {
     font-family: 'Helvetica Neue';
 }
 
+a, a:visited {
+    color: darkblue;
+}
+
+a:active {
+    color: lightblue;
+}
+
 ul {
     list-style-type: none;
 }

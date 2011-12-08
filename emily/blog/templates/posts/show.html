@@ -13,10 +13,13 @@
             <h1 id='post-title'>{{ post.title }}</h1>
 
             <div id='post-metadata'>
-                <div class='byline'>by <span class='author'>unknown</span> on <span class='publication-date'>{{ post.created_at }}</span></div>
-                {% if user.is_staff %}
-                    <div id='post-edit-link'><a href='{% url 'edit_post' post.id %}'>Edit</a></div>
-                {% endif %}
+                <div class='byline'>
+                    by <span class='author'>unknown</span> on <span class='publication-date'>{{ post.created_at }}</span>
+                    
+                    {% if user.is_staff %}
+                        <span id='post-edit-link' class='button bright'><a href='{% url 'edit_post' post.id %}'>Edit</a></span>
+                    {% endif %}
+                </div>
             </div>
         </div>
 
