@@ -23,7 +23,7 @@
                             <span id='new-post-link' class='button bright'><a href='{% url 'new_post' %}'>New Post</a></span>
                         {% endif %}
                         
-                        <span id='session-management-link' class='button bright'><a href='{% url 'logout' %}'>Sign out</a></span>
+                        <span id='session-management-link' class='button'><a href='{% url 'logout' %}'>Sign out</a></span>
                     {% else %}
                         <span id='session-management-link' class='button bright'><a href='{% url 'login' %}'>Sign in</a></span>
                     {% endif %}
