@@ -24,14 +24,7 @@
   <ul>
   {% for comment in post.comment_set.all %}
       <li>
-        <div class='comment-header'>
-          <div class='comment-title'>{{ comment.title }}</div>
-          <div class='comment-metadata'>
-            <div class='byline'>by <span class='author'>unknown</span> on <span class='publication-date'>{{ comment.created_at }}</span></div>
-            <div class='edit-link'><a href='{% url 'edit_comment' comment.id %}'>Edit</a></div>
-          </div>
-        </div>
-        <div class='comment-body'>{{ comment.body }}</div>
+        {% include 'comments/_comment.html' with comment=comment %}
       </li>
   {% empty %}
       <li>
