@@ -2,29 +2,33 @@
 
 <html>
     <head>
-        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-        <script type="text/javascript">
-            google.load("jquery", "1.4");
+        <script type='text/javascript' src='http://www.google.com/jsapi'></script>
+        <script type='text/javascript'>
+            google.load('jquery', '1.4');
         </script>
+        
+        <link href='{{ STATIC_URL }}stylesheets/application.css' rel='stylesheet' type='text/css' media='screen' />
     </head>
 
     <body>
-        <div id='page-header'>
-            <span id='home-link'><a href='{% url 'posts' %}'>Home</a></span>
-            |
+        <div id='page'>
+            <div id='page-header'>
+                <span id='home-link'><a href='{% url 'posts' %}'>Home</a></span>
+                |
     
-            {% if user.is_authenticated %}
-                <span id='user-welcome'>Welcome, {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}.</span>
-                | 
-                <span class='session-management-link'><a href='{% url 'logout' %}'>Sign out</a></span>
-            {% else %}
-                <span class='session-management-link'><a href='{% url 'login' %}'>Sign in</a></span>
-            {% endif %}
-        </div>
+                {% if user.is_authenticated %}
+                    <span id='user-welcome'>Welcome, {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}.</span>
+                    | 
+                    <span class='session-management-link'><a href='{% url 'logout' %}'>Sign out</a></span>
+                {% else %}
+                    <span class='session-management-link'><a href='{% url 'login' %}'>Sign in</a></span>
+                {% endif %}
+            </div>
 
-        <div id='page-content'>
-            {% block content %}
-            {% endblock %}
+            <div id='page-content'>
+                {% block content %}
+                {% endblock %}
+            </div>
         </div>
     </body>
 </html>
