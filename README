@@ -39,3 +39,4 @@ V. Notes
 3. I've used Python 2.7 and Django 1.4.  If you're using different versions, you may encounter issues (though I'm not experienced enough with Python and Django to be able to anticipate all of them).  For example, Python 2.7 uses a different testing library than previous versions, and if you're not using Python 2.7 you may need to change my 'import unittest' declarations to 'from django.utils import unittest'.
 4. I deviated slightly from the instructions on the makeup of the Post object.  I added an 'author' field, because I think any good blog should have the ability to credit the author.
 5. I've done my best to conform to the PEP-8 Python style guidelines (http://www.python.org/dev/peps/pep-0008/).
+6. I used a number of django documentation and tutorial pages, blog posts, and stack overflow answers in writing this project, however the content is substantively mine.  
