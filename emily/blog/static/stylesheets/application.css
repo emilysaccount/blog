@@ -87,6 +87,10 @@ form input[type='submit'] {
     border: orange;
 }
 
+.byline {
+    color: grey;
+}
+
 .pagination-nav {
     text-align: center;
 }
@@ -136,7 +140,42 @@ form input[type='submit'] {
     margin: 0 auto;
 }
 
+
 .post-templates#index-template #post-list {
     width: 50%;
     margin: 0 auto;
+}
+
+
+.post-templates#show-template #post-body {
+    margin: 1em 0;
+}
+
+.post-templates#show-template #comments {
+    margin-top: 8px;
+    border-top: 1px solid lightgrey;
+    padding-top: 12px;
+}
+
+.post-templates#show-template #comments-title {
+    font-weight: bold;
+}
+
+.post-templates#show-template #new-comment-link {
+    margin-left: 4px;
+}
+
+.post-templates#show-template #new-comment-form {
+    display: none;
+}
+
+
+.comments-templates.comment-partial {
+    margin: 8px;
+    border-left: 1px solid lightblue;
+    padding: 4px;
+}
+
+.comments-templates.comment-partial .comment-body {
+    padding: 4px;
 }
