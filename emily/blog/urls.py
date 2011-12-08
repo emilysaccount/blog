@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     # (Mostly) Restful URLs.
     url(r'^(?:posts/)*$', 
         ListView.as_view(model=Post, template_name='posts/index.html', 
-                         paginate_by=5),
+                         paginate_by=10),
         name='posts'),
         
     url(r'^posts/new/$', 
