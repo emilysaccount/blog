@@ -40,28 +40,10 @@ urlpatterns = patterns('',
 )
 
 
-# Comment URLs.
-urlpatterns += patterns('',
-    url(r'^comments/new/$', 
-        staff_member_required(CreateCommentView.as_view()),
-        name='new_comment'),
-
-    url(r'^comments/new/\?post_id=(?P<post>\d+)$', 
-        staff_member_required(CreateCommentView.as_view()),
-        name='new_comment_for_post'),
-        
-    url(r'^comment/(?P<pk>\d+)/edit/$', 
-        staff_member_required(UpdateView.as_view(
-                model=Comment, 
-                template_name='comments/edit.html')),
-        name='edit_comment'),
-)
-
-
 # Feed URLs.
 urlpatterns += patterns('',
     (r'^posts/recent/rss/$', RecentPostsFeed()),
-    (r'^posts/rss/$', RecentPostsFeed()),
-    (r'^post/(?P<pk>\d+)/rss/$', RecentPostsFeed()),
-    (r'^(?P<slug>[^/]+)/rss/$', RecentPostsFeed()),
+    (r'^posts/rss/$', AllPostsFeed()),
+    (r'^post/(?P<pk>\d+)/rss/$', PostCommentsFeed()),
+    (r'^(?P<slug>[^/]+)/rss/$', PostCommentsFeed()),
 )

@@ -18,5 +18,8 @@ urlpatterns = patterns('',
 
     # Installed apps.
     url(r'^blog/', include('blog.urls')),
-    url(r'', include('blog.urls'))
+    url(r'', include('blog.urls')),
+    
+    # Django's comment framework.
+    url(r'^comments/', include('django.contrib.comments.urls')),
 )

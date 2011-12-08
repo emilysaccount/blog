@@ -1,6 +1,8 @@
+from django.contrib.comments import Comment
 from django.contrib.syndication.views import Feed
+from django.shortcuts import get_object_or_404
 
-from blog.models import Comment, Post
+from blog.models import Post
 
 
 class RecentPostsFeed(Feed):
@@ -19,7 +21,7 @@ class AllPostsFeed(Feed):
 
     def items(self):
         return Post.objects.order_by('-created_at')
-        
+       
         
 class PostCommentsFeed(Feed):
     def get_object(self, request, pk):
@@ -35,5 +37,5 @@ class PostCommentsFeed(Feed):
         return obj.get_absolute_url()
 
     def items(self, obj):
-        return Comments.objects.filter(post=obj).order_by('-created_at')
+        return Comment.objects.filter(content_type=Post, object_pk=obj.id).order_by('-submit_date')
         

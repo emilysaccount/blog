@@ -1,19 +1,11 @@
 from django.contrib import admin
 
 from blog.models import Post
-from blog.models import Comment
 
 
 ##
 # Classes to specify admin configuration.
 ##
-
-# Setup for allowing Comments to be shown on the Post admin page.
-class CommentInline(admin.StackedInline):
-    model = Comment
-    # We only want one comment form to be visible at a time.
-    extra = 1
-
 
 # Configure admin for the Post model.
 class PostAdmin(admin.ModelAdmin):
@@ -27,19 +19,6 @@ class PostAdmin(admin.ModelAdmin):
     
     # Configuration for the show/edit views.
     fields = ['title', 'slug', 'created_at', 'body']
-    inlines = [CommentInline]
-
-
-# Specify the order of fields for the Comment model.
-class CommentAdmin(admin.ModelAdmin):
-    # Configuration for the list view.
-    list_display = ('post', 'title', 'created_at')
-    list_filter = ['created_at']
-    search_fields = ['title']
-    date_hierarchy = 'created_at'
-  
-    # Configuration for the show/edit views.
-    fields = ['post', 'title', 'created_at', 'body']
 
 
 ##
@@ -47,4 +26,3 @@ class CommentAdmin(admin.ModelAdmin):
 ##
 
 admin.site.register(Post, PostAdmin)
-admin.site.register(Comment, CommentAdmin)
