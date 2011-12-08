@@ -3,6 +3,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
 
+from blog.feeds import RecentPostsFeed, AllPostsFeed, PostCommentsFeed
 from blog.models import Comment, Post
 from blog.views import CreateCommentView
 
@@ -54,4 +55,13 @@ urlpatterns += patterns('',
                 model=Comment, 
                 template_name='comments/edit.html')),
         name='edit_comment'),
+)
+
+
+# Feed URLs.
+urlpatterns += patterns('',
+    (r'^posts/recent/rss/$', RecentPostsFeed()),
+    (r'^posts/rss/$', RecentPostsFeed()),
+    (r'^post/(?P<pk>\d+)/rss/$', RecentPostsFeed()),
+    (r'^(?P<slug>[^/]+)/rss/$', RecentPostsFeed()),
 )

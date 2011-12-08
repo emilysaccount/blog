@@ -31,4 +31,3 @@ class CreateCommentView(CreateView):
         # TODO: Move this to a save method and remove the form field.
         initial['created_at'] = datetime.now
         return initial
-

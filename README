@@ -32,7 +32,10 @@ Run the project
 
 IV. Extra Features
 1. I deviated slightly from the instructions on the makeup of the Post object.  I added an 'author' field, because I think any good blog should have the ability to credit the author.
-2. An RSS 2.0 feed is available at mysite.com/feed.
+2. Three RSS 2.0 feeds are available:
+  - mysite.com/posts/recent/rss - the 5 most recent posts
+  - mysite.com/posts/rss - all posts
+  - mysite.com/post/{id}/rss - all comments for a specified post
 3. Slightly-better-than-plaintext styling.
 
 V. Notes
