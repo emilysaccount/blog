@@ -1,8 +1,11 @@
-from blog.models import Post
+from blog.models import Comment, Post
+from blog.views import CreateCommentView
+
 from django.conf.urls import patterns, url
 from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
+
 
 # Post URLs.
 urlpatterns = patterns('',
@@ -33,4 +36,21 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[^/]+)/$', 
         DetailView.as_view(model=Post, template_name='posts/show.html'),
         name='post_by_slug'),
+)
+
+# Comment URLs.
+urlpatterns += patterns('',
+    url(r'^comments/new/$', 
+        staff_member_required(CreateCommentView.as_view()),
+        name='new_comment'),
+
+    url(r'^comments/new/\?post_id=(?P<post>\d+)$', 
+        staff_member_required(CreateCommentView.as_view()),
+        name='new_comment_for_post'),
+        
+    url(r'^comment/(?P<pk>\d+)/edit/$', 
+        staff_member_required(UpdateView.as_view(
+                model=Comment, 
+                template_name='comments/edit.html')),
+        name='edit_comment'),
 )

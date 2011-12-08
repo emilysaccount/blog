@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+<h1>New Comment</h1>
+
+{% if error_message %}<p class='notify-error'>{{ error_message }}</p>{% endif %}
+
+<form action='{% url 'new_comment' %}' method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Create" />
+</form>
+
+{% endblock %}

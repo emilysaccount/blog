@@ -3,25 +3,38 @@
 
 {% block content %}
 
-<h1>{{ post.title }}</h1>
+<div class='post-header'>
+  <h1 class='post-title'>{{ post.title }}</h1>
 
-<div class='byline'>by <span class='author'>unknown</span> on <span class='publication-date'>{{ post.created_at }}</span></div>
-{% if user.is_staff %}
-  <div class='edit-link'><a href='{% url 'edit_post' post.id %}'>Edit</a></div>
-{% endif %}
+  <div class='post-metadata'>
+    <div class='byline'>by <span class='author'>unknown</span> on <span class='publication-date'>{{ post.created_at }}</span></div>
+    {% if user.is_staff %}
+      <div class='edit-link'><a href='{% url 'edit_post' post.id %}'>Edit</a></div>
+    {% endif %}
+  </div>
+</div>
 
 <div class='post-body'>
   {{ post.body }}
 </div>
 
-<ul>
-{% for comment in post.comment_set.all %}
-    <div>
-      <div class='comment-title'>{{ comment.title }}</div>
-      <div class='byline'>by <span class='author'>unknown</span> on <span class='publication-date'>{{ comment.created_at }}</span></div>
-      <div class='comment-body'>{{ comment.body }}</div>
-    </div>
-{% endfor %}
-</ul>
+<div class='comments'>
+  <div class='new-comment-link'><a href='{% url 'new_comment_for_post' post.id %}'>Add Comment</a></div>
+  
+  <ul>
+  {% for comment in post.comment_set.all %}
+      <div>
+        <div class='comment-header'>
+          <div class='comment-title'>{{ comment.title }}</div>
+          <div class='comment-metadata'>
+            <div class='byline'>by <span class='author'>unknown</span> on <span class='publication-date'>{{ comment.created_at }}</span></div>
+            <div class='edit-link'><a href='{% url 'edit_comment' comment.id %}'>Edit</a></div>
+          </div>
+        </div>
+        <div class='comment-body'>{{ comment.body }}</div>
+      </div>
+  {% endfor %}
+  </ul>
+</div>
 
 {% endblock %}

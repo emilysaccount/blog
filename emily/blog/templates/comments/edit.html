@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+<h1><a href='{% url 'post_by_slug' comment.post.slug %}'>{{ comment.post.title }}</a> > Edit Comment</h1>
+
+{% if error_message %}<p class='notify-error'>{{ error_message }}</p>{% endif %}
+
+<form action='{% url 'edit_comment' comment.id %}' method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update" />
+</form>
+
+{% endblock %}

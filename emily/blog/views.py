@@ -1,44 +1,32 @@
-from blog.forms import PostForm
-from blog.models import Post
+from blog.models import Comment, Post
 
-from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse
-from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render_to_response, get_object_or_404
-from django.template import RequestContext
+from django.views.generic.edit import CreateView
+from datetime import datetime
 
-    
-# /post/1/edit
-@login_required
-def post_edit(request, post_id):
-    post = Post.objects.get(pk=post_id)
-    form = PostForm(instance=post)
-    return render_to_response('posts/edit.html', {'post': post, 'form': form},
-                              context_instance=RequestContext(request))
+class CreateCommentView(CreateView):
+    model = Comment
+    template_name = 'comments/new.html'
 
-# /post/1/update
-@login_required
-def post_update(request, post_id):
-    # Get the appropriate Post.
-    post = Post.objects.get(pk=post_id)
-    
-    # If this is a POST request, process the form.
-    if request.method == 'POST':
-        form = PostForm(request.POST)
-        if form.is_valid():
-            # Process the data in form.cleaned_data.
-            post.title = form.cleaned_data['title']
-            post.slug = form.cleaned_data['slug']
-            post.created_at = form.cleaned_data['created_at']
-            post.body = form.cleaned_data['body']
-            post.save()
-                
-            return HttpResponseRedirect(reverse('post_show_by_slug', 
-                                                args=(post.slug)))
-    # If the user somehow got to this page without using a POST request (which
-    # shouldn't be happening with this URL design), send them back to the edit
-    # page.
-    else:
-        return HttpResponseRedirect(reverse('blog.views.post_edit', 
-                                            args=(post.id)))
-    
+    def get_initial(self):
+        # Get the initial dictionary from the superclass method.
+        initial = super(CreateCommentView, self).get_initial()
+        # Copy the dictionary so we don't accidentally change a mutable dict.
+        initial = initial.copy()
+        
+        # Set fields from request data.
+        # Set the user to current user.
+        # TODO: Make this a hidden field.
+        initial['user'] = self.request.user.pk
+        # Set the parent post to the post id provided in the parameters.
+        # TODO: I can't get this to work correctly, either with the call to 
+        # get the real object or just using the arg.  Both return the expected
+        # id number, but I can't get the post to be pre-selected in the 
+        # dropdown.
+        # TODO: Make this a hidden field.  (Hopefully will also solve problem
+        # mentioned in TODO above.)
+        # initial['post'] = Post.objects.get(pk=self.kwargs.get('post')).id
+        # Set the created_at time to now. 
+        # TODO: Move this to a save method and remove the form field.
+        initial['created_at'] = datetime.now
+        return initial
+
