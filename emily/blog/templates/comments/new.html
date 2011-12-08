@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load url from future %}
 
 {% block content %}
@@ -10,7 +10,7 @@
 <form action='{% url 'new_comment' %}' method='post'>
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Create" />
+    <input type='submit' value='Create' />
 </form>
 
 {% endblock %}
