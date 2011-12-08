@@ -3,41 +3,42 @@
 
 {% block content %}
 
-{% if user.is_staff %}
-  <a href='{% url 'new_post' %}'>New Post</a>
-{% endif %}
+    {% if user.is_staff %}
+        <a href='{% url 'new_post' %}'>New Post</a>
+    {% endif %}
 
-{% if post_list %}
-    <div class='pagination'>
-        <span class='step-links'>
-            <a href='?page=1'>first</a>
+    {% if post_list %}
+        <div class='pagination'>
+            <span class='step-links'>
+                <a href='?page=1'>first</a>
             
-            {% if page_obj.has_previous %}
-                <a href='?page={{ page_obj.previous_page_number }}'>previous</a>
-            {% else %}
-                previous
-            {% endif %}
+                {% if page_obj.has_previous %}
+                    <a href='?page={{ page_obj.previous_page_number }}'>previous</a>
+                {% else %}
+                    previous
+                {% endif %}
 
-            <span class='current'>
-                Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+                <span class='current'>
+                    Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href='?page={{ page_obj.next_page_number }}'>next</a>
+                {% else %}
+                    next
+                {% endif %}
+            
+                <a href='?page=last'>last</a>
             </span>
-
-            {% if page_obj.has_next %}
-                <a href='?page={{ page_obj.next_page_number }}'>next</a>
-            {% else %}
-                next
-            {% endif %}
-            
-            <a href='?page=last'>last</a>
-        </span>
-    </div>
-    <ul> 
-    {% for post in post_list %}
-        <li><a href='{{ post.get_absolute_url}}'>{{ post.title }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No posts are available.</p>
-{% endif %}
+        </div>
+        
+        <ul> 
+            {% for post in post_list %}
+                <li><a href='{{ post.get_absolute_url}}'>{{ post.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No posts are available.</p>
+    {% endif %}
 
 {% endblock %}

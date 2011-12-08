@@ -3,36 +3,36 @@
 
 {% block content %}
 
-<div class='post-header'>
-  <h1 class='post-title'>{{ post.title }}</h1>
+    <div class='post-header'>
+        <h1 class='post-title'>{{ post.title }}</h1>
 
-  <div class='post-metadata'>
-    <div class='byline'>by <span class='author'>unknown</span> on <span class='publication-date'>{{ post.created_at }}</span></div>
-    {% if user.is_staff %}
-      <div class='edit-link'><a href='{% url 'edit_post' post.id %}'>Edit</a></div>
-    {% endif %}
-  </div>
-</div>
+        <div class='post-metadata'>
+            <div class='byline'>by <span class='author'>unknown</span> on <span class='publication-date'>{{ post.created_at }}</span></div>
+            {% if user.is_staff %}
+                <div class='edit-link'><a href='{% url 'edit_post' post.id %}'>Edit</a></div>
+            {% endif %}
+        </div>
+    </div>
 
-<div class='post-body'>
-  {{ post.body }}
-</div>
+    <div class='post-body'>
+        {{ post.body }}
+    </div>
 
-<div class='comments'>
-  <div class='new-comment-link'><a href='{% url 'new_comment_for_post' post.id %}'>Add Comment</a></div>
+    <div class='comments'>
+        <div class='new-comment-link'><a href='{% url 'new_comment_for_post' post.id %}'>Add Comment</a></div>
   
-  <ul>
-  {% for comment in post.comment_set.all %}
-      <li>
-        {% include 'comments/_comment.html' with comment=comment %}
-      </li>
-  {% empty %}
-      <li>
-        <p>No comments yet.</p>
-        <p>Use the 'Add Comment' link above to be the first to comment on this post!</p>
-      </li>
-  {% endfor %}
-  </ul>
-</div>
+        <ul>
+            {% for comment in post.comment_set.all %}
+                <li>
+                    {% include 'comments/_comment.html' with comment=comment %}
+                </li>
+            {% empty %}
+                <li>
+                    <p>No comments yet.</p>
+                    <p>Use the 'Add Comment' link above to be the first to comment on this post!</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 
 {% endblock %}
