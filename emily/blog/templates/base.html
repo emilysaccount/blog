@@ -34,6 +34,16 @@
                 {% block content %}
                 {% endblock %}
             </div>
+            
+            <div id='page-footer'>
+                <div id='rss-subscribe'>
+                    Like what you see? <span class='button bright'><a href='{% url 'all_posts_feed' %}'>Subscribe to our feed</a></span> in your favorite RSS reader.
+                </div>
+                
+                <div id='copyright'>
+                    copyright 2011 by Emily Leathers
+                </div>
+            </div>
         </div>
     </body>
 </html>

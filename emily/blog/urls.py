@@ -41,8 +41,10 @@ urlpatterns = patterns('',
 
 # Feed URLs.
 urlpatterns += patterns('',
-    (r'^posts/recent/rss/$', RecentPostsFeed()),
-    (r'^posts/rss/$', AllPostsFeed()),
-    (r'^post/(?P<pk>\d+)/rss/$', PostCommentsFeed()),
-    (r'^(?P<slug>[^/]+)/rss/$', PostCommentsFeed()),
+    url(r'^posts/recent/rss/$', RecentPostsFeed(), name='recent_posts_feed'),
+    url(r'^posts/rss/$', AllPostsFeed(), name='all_posts_feed'),
+    url(r'^post/(?P<pk>\d+)/rss/$', PostCommentsFeed(), 
+        name='post_comments_feed'),
+    url(r'^(?P<slug>[^/]+)/rss/$', PostCommentsFeed(),
+        name='post_comments_feed_by_slug'),
 )
