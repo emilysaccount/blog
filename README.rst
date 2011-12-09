@@ -28,19 +28,26 @@ Set up your machine
 -------------------
 2. Install python and django (https://docs.djangoproject.com/en/dev/intro/install/).
 3. Install apache and mod_wsgi (http://code.google.com/p/modwsgi/).
-4. Replace your httpd.conf with the one at the top level of this project.  This will enable WSGI in Apache. {TODO: where is this file likely to be?}
-5. Install postgresql (http://www.postgresql.org/).
+4. Replace your httpd.conf with the one at the top level of this project.  This will enable WSGI in Apache and configure it for this Django project.
+5. Configure the correct path to your checkout of the project code in the httpd.conf (lines 299-307).
+6. Install postgresql (http://www.postgresql.org/).
 
 Set up the project
 ------------------
-6. Create a postgresql user called 'emily' with the password 'emilytest'.
-7. Create a postgresql database called 'emily'.
-8. In your terminal, cd to the directory where you cloned this project, then into the 'emily' directory, and then run 'python manage.py syncdb' to load the schema into the database.
+7. Create a postgresql user called 'emily' with the password 'emilytest'.
+8. Create a postgresql database called 'emily'.
+9. In your terminal, cd to the directory where you cloned this project, then into the 'emily' directory, and then run 'python manage.py syncdb' to load the schema into the database.
 
 Run the project
 ---------------
-9. Still in the top 'emily' directory in your terminal, run 'python manage.py runserver' to start a server.
-10. Visit localhost:8000 in your browser to view the site.
+There are two options for running the project: the development server, or through Apache.
+Development server:
+10. Still in the top 'emily' directory in your terminal, run 'python manage.py runserver' to start a server.
+11. Visit localhost:8000 in your browser to view the site.
+
+Apache:
+10. Make sure Apache is running.
+11. Visit localhost:80 in your browser to view the site.
 
 Extra Features
 ==============
