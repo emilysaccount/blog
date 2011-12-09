@@ -6,13 +6,13 @@ This repository contains the code for my sample blog project
 
 This README contains the following sections:
 
-1. `Project Description`_ 
+    1. `Project Description`_ 
 
-2. Instructions for `Running Locally`_ 
+    2. Instructions for `Running Locally`_ 
     
-3. `Extra Features`_ beyond the basic requirements
+    3. `Extra Features`_ beyond the basic requirements
     
-4. Other `Notes`_ 
+    4. Other `Notes`_ 
 
 Overview
 ========
@@ -49,9 +49,9 @@ Extra Features
 ==============
 1. I deviated slightly from the instructions on the makeup of the Post object.  I added an 'author' field, because I think any good blog should have the ability to credit the author.
 2. Three RSS 2.0 feeds are available:
-- mysite.com/posts/recent/rss - the 5 most recent posts
-- mysite.com/posts/rss - all posts
-- mysite.com/post/{id}/rss - all comments for a specified post
+  - mysite.com/posts/recent/rss - the 5 most recent posts
+  - mysite.com/posts/rss - all posts
+  - mysite.com/post/{id}/rss - all comments for a specified post
 3. Slightly-better-than-plaintext styling.
 
 Notes
@@ -64,8 +64,8 @@ Notes
 6. I like to break my style definitions into multiple files and then use a tool that combines them all into a single one for the user to download (in Rails, this is SASS).  I didn't see something similar for Django, so apologies for the single, messy CSS file.
 7. The template naming conventions are largely from Rails.  The 'post_details.html' convention felt inelegant, and I couldn't quickly find a description of a better one used by Django programmers.
 8. There are a couple of form changes I didn't take the time to make:
-- The Post forms shouldn't display 'created_at' and 'user'.  Those should be added in on the server side when the creation form is saved, and not editable after that.
-- The Comment preview page is using the default one instead of a local template, which means that I couldn't have it inherit from base.html so it doesn't have the header, footer, or styling.
-- The 'staff_member_required' decorator takes the user to admin's login page, not mine.  I'm not sure of a simple way to change this.
+  - The Post forms shouldn't display 'created_at' and 'user'.  Those should be added in on the server side when the creation form is saved, and not editable after that.
+  - The Comment preview page is using the default one instead of a local template, which means that I couldn't have it inherit from base.html so it doesn't have the header, footer, or styling.
+  - The 'staff_member_required' decorator takes the user to admin's login page, not mine.  I'm not sure of a simple way to change this.
 9. It wasn't 100% clear from the 'all users can comment on posts' instruction whether that means all viewers, or all logged-in users.  My original implementation of comments required a user to login before posting a comment.  When I switched to using the built-in comments I couldn't find a way to replicate that restriction without a lot of extra work, so I willfully re-interpreted the instruction to allow all visitors to post comments, whether they're logged in or not.  Hopefully that's alright.
 10. Overall this project was a great learning experience.  I'd really like to spend more time talking to developers who are more experienced with Django - I feel like there are more concise ways to do much of this, and lots of idioms I don't know.
