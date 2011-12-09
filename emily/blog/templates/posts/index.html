@@ -18,7 +18,7 @@
         
                 <ul> 
                     {% for post in post_list %}
-                        <li><a href='{{ post.get_absolute_url}}'>{{ post.title }}</a></li>
+                        <li><a href='{{ post.get_absolute_url}}'>{{ post.title }}</a> by {% if post.user.first_name %}{{ post.user.first_name }}{% else %}{{ post.user.username }}{% endif %}</li>
                     {% endfor %}
                 </ul>
         
