@@ -14,9 +14,6 @@ This README contains the following sections:
     
     4. Other `Notes`_ 
 
-Overview
-========
-
 
 Project Description
 ===================
